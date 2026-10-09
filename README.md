@@ -1,36 +1,54 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Fintech Icons Argentina
 
-## Getting Started
+Plataforma web + API de iconos SVG del ecosistema fintech de Argentina.
 
-First, run the development server:
+## Atribución
+
+Esta plataforma utiliza iconos originales creados por **Santiago Galan** ([@sgalanb](https://github.com/sgalanb)).
+
+- **Repo original**: https://github.com/sgalanb/fintech-icons-argentina
+- **Sitio web**: https://icons.com.ar
+
+Gracias Santiago por crear y compartir esta colección. Si te sirve, dale un star al repo original.
+
+## Descripción
+
+Colección de iconos SVG relacionados con el mundo fintech de Argentina: bancos, billeteras digitales, criptomonedas, CEDEARs, acciones y más.
+
+## Desarrollo local
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Abrir [http://localhost:3000/fintech-icons-ar](http://localhost:3000/fintech-icons-ar)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Datos
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Los iconos viven en `data/icons.json`. Cada icono tiene:
 
-## Learn More
+```json
+{
+  "id": "mercado-pago",
+  "name": "Mercado Pago",
+  "type": "Bancos y Billeteras",
+  "tags": ["billetera", "pago"],
+  "svg": "<svg ...>...</svg>"
+}
+```
 
-To learn more about Next.js, take a look at the following resources:
+## Deploy en GitHub Pages
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+1. Crear un repositorio en GitHub con este contenido
+2. En Settings → Pages, seleccionar "GitHub Actions" como source
+3. Hacer push a `main` — el workflow construye y despliega automáticamente
+4. La URL será `https://<usuario>.github.io/fintech-icons-ar/`
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## API (JSON estático)
 
-## Deploy on Vercel
+Los iconos están disponibles como JSON estático en `public/icons.json` (generado en build).
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Licencia
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Los logos y marcas comerciales son propiedad de sus respectivos dueños.
