@@ -26,6 +26,39 @@ export interface IconsData {
   icons: FintechIcon[];
 }
 
+const scopedSvgCache = new Map<string, string>();
+
+export function scopeSvg(svg: string, scope: string): string {
+  const cached = scopedSvgCache.get(scope);
+  if (cached !== undefined) return cached;
+
+  const safeScope = scope.replace(/[^a-zA-Z0-9_-]/g, "-");
+  const ids = new Set<string>();
+  for (const match of svg.matchAll(/\bid="([^"]+)"/g)) {
+    ids.add(match[1]);
+  }
+
+  let result = svg;
+  for (const id of ids) {
+    const scopedId = `${id}-${safeScope}`;
+    result = result
+      .replaceAll(`id="${id}"`, `id="${scopedId}"`)
+      .replaceAll(`url(#${id})`, `url(#${scopedId})`)
+      .replaceAll(`href="#${id}"`, `href="#${scopedId}"`);
+  }
+
+  const defined = new Set(
+    [...result.matchAll(/\bid="([^"]+)"/g)].map((match) => match[1])
+  );
+  result = result.replace(
+    /\s(clip-path|mask|filter)="url\(#([^)]+)\)"/g,
+    (match, _attr, refId) => (defined.has(refId) ? match : "")
+  );
+
+  scopedSvgCache.set(scope, result);
+  return result;
+}
+
 export function filterIcons(
   icons: FintechIcon[],
   search: string,

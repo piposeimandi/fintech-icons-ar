@@ -2,6 +2,7 @@
 
 import { useEffect } from "react";
 import type { FintechIcon } from "@/lib/icons";
+import { scopeSvg } from "@/lib/icons";
 
 interface IconModalProps {
   icon: FintechIcon | null;
@@ -61,7 +62,7 @@ export default function IconModal({ icon, onClose }: IconModalProps) {
 
         <div
           className="flex h-36 w-36 items-center justify-center rounded-2xl bg-zinc-50 p-4 dark:bg-zinc-800 [&>svg]:h-24 [&>svg]:w-24"
-          dangerouslySetInnerHTML={{ __html: icon.svg }}
+          dangerouslySetInnerHTML={{ __html: scopeSvg(icon.svg, icon.id) }}
         />
 
         <div className="flex w-full flex-col items-start gap-2">

@@ -1,6 +1,7 @@
 "use client";
 
 import type { FintechIcon } from "@/lib/icons";
+import { scopeSvg } from "@/lib/icons";
 
 interface IconCardProps {
   icon: FintechIcon;
@@ -17,7 +18,7 @@ export default function IconCard({ icon, onClick }: IconCardProps) {
 
       <div
         className="relative flex h-14 w-14 items-center justify-center [&>svg]:h-12 [&>svg]:w-12"
-        dangerouslySetInnerHTML={{ __html: icon.svg }}
+        dangerouslySetInnerHTML={{ __html: scopeSvg(icon.svg, icon.id) }}
       />
 
       <div className="relative mt-4 flex w-full flex-col items-center gap-1">
