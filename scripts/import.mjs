@@ -13,6 +13,8 @@ const unescapeJs = (s) =>
     return map[g] ?? g;
   });
 
+const decode = (raw) => JSON.parse('"' + unescapeJs(raw) + '"');
+
 const ITEM_RE =
   /\{\\"_title\\":\\"((?:[^\\]|\\.)*?)\\",\\"id\\":\\"((?:[^\\]|\\.)*?)\\",\\"type\\":\\"((?:[^\\]|\\.)*?)\\",\\"source\\":\\"((?:[^\\]|\\.)*?)\\"}/g;
 
@@ -31,9 +33,9 @@ async function main() {
   const seen = new Set();
 
   for (const [, title, id, type, source] of html.matchAll(ITEM_RE)) {
-    const iconId = unescapeJs(id).trim();
-    const name = unescapeJs(title).trim();
-    const svg = unescapeJs(source).trim();
+    const iconId = decode(id).trim();
+    const name = decode(title).trim();
+    const svg = decode(source).trim();
 
     if (!iconId || !svg || seen.has(iconId)) continue;
     seen.add(iconId);
@@ -41,7 +43,7 @@ async function main() {
     icons.push({
       id: iconId,
       name: name || iconId,
-      type: unescapeJs(type).trim(),
+      type: decode(type).trim(),
       tags: [],
       svg,
     });

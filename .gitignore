@@ -17,9 +17,6 @@
 /.next/
 /out/
 
-# generated api file (built from data/icons.json)
-/public/icons.json
-
 # production
 /build
 
